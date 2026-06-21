@@ -1,73 +1,73 @@
-# React + TypeScript + Vite
+# ⚡ ANIMESH | From Caffeine To Creation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, interactive 3D portfolio combining dark-cyber aesthetics, high-performance animations, and tactile design systems. Inspired by the textured silver and neon cyan branding of **Monster Energy Zero Ultra**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✦ The Concept
 
-## React Compiler
+This is not a traditional static portfolio. It is a dynamic 3D experience designed to sit at the intersection of raw performance and gothic cyberpunk sigilism. Every interaction is tied to scroll and tap triggers, dragging the viewer into a highly tailored developer environment.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ⚙️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Core**: React 19, TypeScript, Vite
+- **3D Graphics**: WebGL / Three.js
+- **Styling**: Modern CSS with custom design tokens (Monster-inspired neon cyan `--accent` + chrome silver gradients)
+- **Deployment**: Vercel (clean URLs, optimized routing)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ The Arsenal (Libraries & Modules)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3D & Shaders
+* **`@react-three/fiber` & `@react-three/drei`**
+  Renders the interactive 3D soda can scene directly in the React DOM tree. Handles camera controls, custom lighting setups, and environmental mapping.
+* **`three`**
+  The underlying WebGL engine handling materials, geometries, and renderer logic.
+* **`@react-three/postprocessing`**
+  Injects cinematic effects: holographic distortions, subtle grain overlays, chromatic aberration, and neon glows.
+
+### Motion & Physics
+* **`gsap` (GreenSock Animation Platform) & `ScrollTrigger`**
+  Drives the scroll-bound 3D animations, pinning sections and morphing the 3D assets smoothly as the user navigates through the page.
+* **`framer-motion` & `motion`**
+  Powers fluid entrance animations, micro-interactions, custom cursor tracking, and spring-physics page elements.
+* **`lenis`**
+  Provides unified, smooth inertial scrolling across platforms, syncing perfectly with the GSAP ticker for a stutter-free experience.
+
+### State & Architecture
+* **`zustand`**
+  Orchestrates application state (such as 3D asset loaded states, scroll progresses, and navigation triggers) with minimal re-renders.
+
+---
+
+## 🚀 Setting Up the Lab
+
+To run this build locally:
+
+### 1. Clone & Install
+```bash
+git clone https://github.com/animeshghiloria/Animesh-Portfolio.git
+cd Animesh-Portfolio
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Launch Dev Environment
+```bash
+npm run dev
 ```
+
+### 3. Production Build
+```bash
+npm run build
+```
+
+---
+
+## 📐 Architecture Highlights
+
+* **Critical CSS Loading**: Inline critical background configurations block white-flash rendering before components paint.
+* **Ambient Glow System**: Custom CSS variables mapping neon cyan glows (`#C8FFFF`) and responsive breakpoints optimized for performance on mobile viewports.
+* **Responsive 3D Canvas**: The Three.js canvas dynamically scales viewport dimensions, adjusting model scales based on device profiles.
