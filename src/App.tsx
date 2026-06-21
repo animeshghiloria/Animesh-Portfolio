@@ -23,6 +23,91 @@ function App() {
   const setLenis = useStore((s) => s.setLenis)
   const lenisRef = useRef<Lenis | null>(null)
 
+  const canTapped = useStore((s) => s.canTapped)
+  const isMuted = useStore((s) => s.isMuted)
+  const setIsMuted = useStore((s) => s.setIsMuted)
+  
+  const audioRef = useRef<HTMLAudioElement | null>(null)
+  const muteVolumeFactorRef = useRef({ value: 1 })
+
+  // Audio Playback & Time-based Fade
+  useEffect(() => {
+    if (canTapped) {
+      const audio = new Audio('/under-your-spell.mp3')
+      audio.loop = true
+      audio.volume = 0 // start at 0 for fade-in
+      audioRef.current = audio
+
+      const targetVolume = 0.75
+      const fadeInDuration = 3 // seconds
+      const fadeOutDuration = 5 // seconds
+
+      const handleTimeUpdate = () => {
+        const currentTime = audio.currentTime
+        const duration = audio.duration
+        if (!duration) return
+
+        let trackFadeFactor = 1
+        if (currentTime < fadeInDuration) {
+          trackFadeFactor = currentTime / fadeInDuration
+        } else if (duration - currentTime < fadeOutDuration) {
+          trackFadeFactor = (duration - currentTime) / fadeOutDuration
+        }
+
+        const currentMuteFactor = muteVolumeFactorRef.current.value
+        const computedVolume = targetVolume * trackFadeFactor * currentMuteFactor
+        audio.volume = Math.max(0, Math.min(computedVolume, 1))
+      }
+
+      audio.addEventListener('timeupdate', handleTimeUpdate)
+      
+      // Attempt playback
+      audio.play().catch((err) => {
+        console.warn('Audio playback blocked by autoplay policy:', err)
+      })
+
+      return () => {
+        audio.removeEventListener('timeupdate', handleTimeUpdate)
+        audio.pause()
+        audioRef.current = null
+      }
+    }
+  }, [canTapped])
+
+  // Smooth Mute/Unmute Fade
+  useEffect(() => {
+    if (!audioRef.current) return
+
+    gsap.to(muteVolumeFactorRef.current, {
+      value: isMuted ? 0 : 1,
+      duration: 1.0,
+      ease: 'power1.out',
+      onUpdate: () => {
+        if (audioRef.current) {
+          const audio = audioRef.current
+          const currentTime = audio.currentTime
+          const duration = audio.duration
+          
+          const targetVolume = 0.75
+          const fadeInDuration = 3
+          const fadeOutDuration = 5
+          
+          let trackFadeFactor = 1
+          if (duration) {
+            if (currentTime < fadeInDuration) {
+              trackFadeFactor = currentTime / fadeInDuration
+            } else if (duration - currentTime < fadeOutDuration) {
+              trackFadeFactor = (duration - currentTime) / fadeOutDuration
+            }
+          }
+          
+          const computedVolume = targetVolume * trackFadeFactor * muteVolumeFactorRef.current.value
+          audio.volume = Math.max(0, Math.min(computedVolume, 1))
+        }
+      }
+    })
+  }, [isMuted])
+
   // Block scroll until the can is tapped
   useEffect(() => {
     if (!isLoaded) {
@@ -87,6 +172,20 @@ function App() {
 
       {/* Navigation */}
       <Navbar />
+
+      {/* Floating Sound Controller */}
+      <button
+        className={`sound-controller glass ${canTapped ? 'visible' : ''} ${isMuted ? 'muted' : ''}`}
+        onClick={() => setIsMuted(!isMuted)}
+        aria-label={isMuted ? 'Unmute music' : 'Mute music'}
+      >
+        <div className="sound-bars">
+          <div className="bar" />
+          <div className="bar" />
+          <div className="bar" />
+          <div className="bar" />
+        </div>
+      </button>
 
       {/* Main scrollable content */}
       <main className="main-content">

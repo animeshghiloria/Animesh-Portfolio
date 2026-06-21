@@ -18,6 +18,8 @@ interface PortfolioStore {
   setMousePosition: (pos: { x: number; y: number }) => void
   lenis: Lenis | null
   setLenis: (lenis: Lenis | null) => void
+  isMuted: boolean
+  setIsMuted: (v: boolean) => void
 }
 
 export const useStore = create<PortfolioStore>((set) => ({
@@ -37,4 +39,6 @@ export const useStore = create<PortfolioStore>((set) => ({
   setMousePosition: (pos) => set({ mousePosition: pos }),
   lenis: null,
   setLenis: (lenis) => set({ lenis }),
+  isMuted: false,
+  setIsMuted: (v) => set({ isMuted: v }),
 }))
