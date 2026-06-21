@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="100%" height="100%">
+  <defs>
+    <!-- Silver/Metallic Gradient for Can Body -->
+    <linearGradient id="silverCan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7A7A7A" />
+      <stop offset="25%" stop-color="#DCDCDC" />
+      <stop offset="50%" stop-color="#FFFFFF" />
+      <stop offset="75%" stop-color="#B0B0B0" />
+      <stop offset="100%" stop-color="#5E5E5E" />
+    </linearGradient>
+
+    <!-- Neon Cyan Gradient for Glowing Claws -->
+    <linearGradient id="neonClaw" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#C8FFFF" />
+      <stop offset="100%" stop-color="#00E5FF" />
+    </linearGradient>
+
+    <!-- Glow Filter for the Claw Logo -->
+    <filter id="clawGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.0" result="blur1" />
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.0" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Pull Tab -->
+  <path d="M 14.5,4 C 14.5,2 17.5,2 17.5,4 L 16.5,6 L 15.5,6 Z" 
+        fill="none" 
+        stroke="url(#silverCan)" 
+        stroke-width="1.2" 
+        stroke-linecap="round" />
+
+  <!-- Top Rim of Can -->
+  <ellipse cx="16" cy="6" rx="6" ry="1.5" 
+           fill="#3a3a3a" 
+           stroke="url(#silverCan)" 
+           stroke-width="1.5" />
+
+  <!-- Can Body Outline -->
+  <!-- Cylinder side and bottom -->
+  <path d="M 10,6 L 10,26 C 10,28.5 22,28.5 22,26 L 22,6" 
+        fill="url(#silverCan)" 
+        stroke="url(#silverCan)" 
+        stroke-width="1" />
+
+  <!-- Inner Can shading to make it pop -->
+  <path d="M 10.5,6.5 L 10.5,26 C 10.5,27.8 21.5,27.8 21.5,26 L 21.5,6.5" 
+        fill="none" 
+        stroke="#1a1a1a" 
+        stroke-width="0.5" 
+        opacity="0.3" />
+
+  <!-- Bottom Rim Accent -->
+  <path d="M 10,26 C 10,28 22,28 22,26" 
+        fill="none" 
+        stroke="url(#silverCan)" 
+        stroke-width="1.5" />
+
+  <!-- Glowing Monster-Style Claw Marks -->
+  <g filter="url(#clawGlow)">
+    <!-- Left Claw Slash -->
+    <path d="M 13.5,11 C 12.5,13.5 13.5,16.5 13,19" 
+          fill="none" 
+          stroke="url(#neonClaw)" 
+          stroke-width="1.8" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+          
+    <!-- Center Claw Slash -->
+    <path d="M 16.5,9.5 C 15.5,13.5 16.5,17.5 16,21.5" 
+          fill="none" 
+          stroke="url(#neonClaw)" 
+          stroke-width="2.2" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+          
+    <!-- Right Claw Slash -->
+    <path d="M 19.5,11 C 18.5,13.5 19.5,16.5 19,19" 
+          fill="none" 
+          stroke="url(#neonClaw)" 
+          stroke-width="1.8" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" />
+  </g>
+</svg>

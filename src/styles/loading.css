@@ -1,0 +1,165 @@
+/* ═══════════════════════════════════════════════════════════════════
+   LOADING SCREEN — "Tap the Can" Interactive Entry
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Fullscreen Overlay ───────────────────────────────────────────── */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+/* ── "TAP THE CAN." Prompt ────────────────────────────────────────── */
+.loading-tap-text {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  letter-spacing: 6px;
+  color: rgba(200, 255, 255, 0.85);
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  user-select: none;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.loading-tap-text.visible {
+  opacity: 1;
+  animation: tap-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes tap-pulse {
+  0%, 100% {
+    opacity: 0.85;
+    text-shadow: 0 0 20px rgba(200, 255, 255, 0.15);
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 40px rgba(200, 255, 255, 0.4), 0 0 80px rgba(200, 255, 255, 0.15);
+  }
+}
+
+/* ── Subtle ring around can area ──────────────────────────────────── */
+.loading-can-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(200, 255, 255, 0.08);
+  opacity: 0;
+  transition: opacity 1s ease 0.3s;
+  pointer-events: none;
+}
+
+.loading-can-ring.visible {
+  opacity: 1;
+  animation: ring-breathe 3s ease-in-out infinite;
+}
+
+@keyframes ring-breathe {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    border-color: rgba(200, 255, 255, 0.06);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+    border-color: rgba(200, 255, 255, 0.15);
+  }
+}
+
+/* ── Split Text ("FROM CAFFEINE" / "TO CREATION") ─────────────────── */
+.loading-split-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Syncopate', sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.4rem, 3.8vw, 3.2rem);
+  letter-spacing: 4px;
+  color: #FFFFFF;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  gap: 0.35em;
+  user-select: none;
+  z-index: 2;
+}
+
+.split-word {
+  display: inline-block;
+}
+
+.accent-word {
+  color: var(--accent, #C8FFFF);
+  text-shadow: 0 0 30px rgba(200, 255, 255, 0.4);
+}
+
+/* ── Energy Pulse Line ────────────────────────────────────────────── */
+.loading-energy-pulse {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
+    rgba(200, 255, 255, 0.6) 30%,
+    rgba(255, 255, 255, 0.9) 50%,
+    rgba(200, 255, 255, 0.6) 70%,
+    transparent 95%
+  );
+  transform-origin: center;
+  transform: scaleX(0);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .loading-tap-text {
+    bottom: 18vh;
+    font-size: clamp(0.85rem, 3vw, 1.1rem);
+    letter-spacing: 4px;
+  }
+
+  .loading-split-text {
+    font-size: clamp(1.0rem, 4.5vw, 2.0rem);
+    letter-spacing: 2px;
+  }
+
+  .loading-can-ring {
+    width: 140px;
+    height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loading-tap-text {
+    bottom: 15vh;
+    letter-spacing: 3px;
+  }
+
+  .loading-split-text {
+    font-size: clamp(0.8rem, 5vw, 1.4rem);
+    letter-spacing: 1px;
+  }
+}

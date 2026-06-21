@@ -1,0 +1,429 @@
+/* ═══════════════════════════════════════════════════════════════════
+   MONSTER ULTRA WHITE — Design System
+   Portfolio of ANIMESH | Full Stack Developer | AI Engineer
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Google Fonts ─────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+@font-face {
+  font-family: 'MonsterEnergy';
+  src: url('/fonts/Green_Energy.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── CSS Reset ────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Custom Properties ────────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg-dark: #1a1a1a;
+  --bg-darker: #141414;
+
+  /* Whites & Grays */
+  --white: #FFFFFF;
+  --gray-100: #F7F7F7;
+  --gray-200: #D9D9D9;
+  --gray-300: #C0C0C0;
+  --gray-400: #AFAFAF;
+  --gray-500: #707070;
+
+  /* Accent — Monster-inspired neon cyan */
+  --accent: #C8FFFF;
+  --accent-glow: rgba(200, 255, 255, 0.3);
+  --accent-dim: rgba(200, 255, 255, 0.1);
+
+  /* Chrome silver gradient */
+  --chrome: linear-gradient(135deg, #C0C0C0, #F7F7F7, #C0C0C0);
+
+  /* Typography */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-heading: 'Rajdhani', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* ── Base Styles ──────────────────────────────────────────────────── */
+html,
+body {
+  background: var(--bg-darker);
+  color: var(--gray-100);
+  overflow-x: hidden;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ── Selection ────────────────────────────────────────────────────── */
+::selection {
+  background: var(--accent);
+  color: #111111;
+}
+
+::-moz-selection {
+  background: var(--accent);
+  color: #111111;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* ── Links ────────────────────────────────────────────────────────── */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Images ───────────────────────────────────────────────────────── */
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+/* ── Lists ────────────────────────────────────────────────────────── */
+ul,
+ol {
+  list-style: none;
+}
+
+/* ── Gothic Cyber-Grunge Background ───────────────────────────────── */
+.cybersigilism-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cybersigilism-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.cybersigilism-svg path,
+.cybersigilism-svg circle,
+.cybersigilism-svg ellipse,
+.cybersigilism-svg line,
+.cybersigilism-svg text {
+  vector-effect: non-scaling-stroke;
+}
+
+.gothic-group {
+  transform-origin: 960px 540px;
+}
+
+.gothic-stem {
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1.2px;
+  fill: none;
+}
+
+.gothic-bead {
+  fill: rgba(255, 255, 255, 0.22);
+  stroke: none;
+}
+
+.gothic-chain {
+  stroke: rgba(255, 255, 255, 0.1);
+  stroke-width: 0.8px;
+  fill: none;
+}
+
+.gothic-cross {
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 1px;
+  fill: rgba(255, 255, 255, 0.015);
+}
+
+.gothic-angel {
+  stroke: rgba(255, 255, 255, 0.2);
+  stroke-width: 1.2px;
+  fill: rgba(255, 255, 255, 0.012);
+}
+
+.gothic-text {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 34px;
+  fill: rgba(255, 255, 255, 0.012);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── Glassmorphism Utility ────────────────────────────────────────── */
+.glass {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(17, 17, 17, 0.6);
+  border: 1px solid rgba(200, 255, 255, 0.1);
+  transform: translate3d(0, 0, 0);
+  will-change: transform, backdrop-filter;
+  backface-visibility: hidden;
+}
+
+/* ── Section Base ─────────────────────────────────────────────────── */
+.section {
+  min-height: 100vh;
+  position: relative;
+  padding: 100px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────────── */
+.btn-primary {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 16px 40px;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  z-index: 1;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+  mix-blend-mode: difference;
+  z-index: -1;
+}
+
+.btn-primary:hover::before {
+  transform: translateX(0);
+}
+
+.btn-primary:hover {
+  color: var(--bg-dark);
+  text-shadow: none;
+  box-shadow: 0 0 30px rgba(200, 255, 255, 0.2);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--gray-500);
+  color: var(--gray-300);
+  padding: 16px 40px;
+  font-family: var(--font-heading);
+  font-size: 16px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  z-index: 1;
+}
+
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--gray-500);
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+  mix-blend-mode: difference;
+  z-index: -1;
+}
+
+.btn-secondary:hover::before {
+  transform: translateX(0);
+}
+
+.btn-secondary:hover {
+  color: var(--white);
+  border-color: var(--gray-300);
+  box-shadow: 0 0 20px rgba(112, 112, 112, 0.15);
+}
+
+/* ── Typography Helpers ───────────────────────────────────────────── */
+.text-accent {
+  color: var(--accent);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px var(--accent);
+}
+
+.text-chrome {
+  background: var(--chrome);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Responsive Breakpoints ───────────────────────────────────────── */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .section {
+    padding: 80px 40px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 14px 32px;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .section {
+    padding: 60px 20px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px 28px;
+    font-size: 13px;
+    letter-spacing: 2px;
+    width: 100%;
+  }
+}
+
+/* ── Lenis Smooth Scroll Integration ──────────────────────────────── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* ── Frosted Zero Ultra Background ────────────────────────────────── */
+.frosted-bg-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #0e0e0e 0%, #151515 50%, #0a0a0a 100%);
+  overflow: hidden;
+  user-select: none;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.frosted-noise-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.frosted-engraving-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  max-width: 450px;
+  opacity: 0.16;
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.frosted-engraving-left {
+  left: -20px;
+}
+
+.frosted-engraving-right {
+  right: -20px;
+  transform: scaleX(-1);
+}
+
+.frosted-engraving-svg {
+  width: 100%;
+  height: 100%;
+  stroke: rgba(255, 255, 255, 0.45);
+  fill: none;
+  stroke-width: 0.6px;
+  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.25));
+}
+
+.frosted-shimmer-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.frosted-shimmer-particle {
+  position: absolute;
+  background: linear-gradient(135deg, #ffffff 0%, #dcdcdc 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.85);
+}
+
+.frosted-ambient-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.04) 0%, transparent 75%);
+  pointer-events: none;
+}
